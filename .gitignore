@@ -2,3 +2,10 @@
 .Rhistory
 .RData
 .Ruserdata
+README.html
+.env
+.cache/
+.jupyter/
+.ipynb_checkpoints/
+.local/
+.bash_history

@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  jupyter:
+    build:
+      context: "."
+    user: root
+    environment:
+      JUPYTER_TOKEN: ${JUPYTER_TOKEN}
+      JUPYTER_ENABLE_LAB: 1
+      GRANT_SUDO: 1
+    ports:
+      - "8888:8888"
+    volumes:
+      - ".:/home/jovyan"
