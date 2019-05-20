@@ -9,3 +9,6 @@ README.html
 .ipynb_checkpoints/
 .local/
 .bash_history
+*.docx
+*.xlsx
+*.key
