@@ -1,19 +1,22 @@
-FROM jupyter/datascience-notebook
-
-USER root
+FROM jupyter/datascience-notebook:latest
 
 RUN set -x && \
-  jupyter labextension install @jupyterlab/git && \
-  pip install jupyterlab-git && \
-  jupyter serverextension enable --py jupyterlab_git
+  conda install -c conda-forge \
+    jupyter_contrib_nbextensions \
+    jupytext
 
-USER $NB_UID
+RUN set -x && \
+  echo c.NotebookApp.contents_manager_class = "jupytext.TextFileContentsManager" >> /home/jovyan/.jupyter/jupyter_notebook_config.py
+
+RUN set -x && \
+  jupyter labextension install \
+    jupyterlab-jupytext \
+    @jupyterlab/toc \
+    @jupyterlab/git
 
 RUN set -x && \
   conda install --quiet --yes \
+    "r-formatR=1.5" \
     "r-here=0.1" && \
   conda clean -tipsy && \
-  fix-permissions $CONDA_DIR && \
-  fix-permissions /home/$NB_USER
-
-USER root
+  fix-permissions $CONDA_DIR
