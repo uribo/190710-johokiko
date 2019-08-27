@@ -11,3 +11,5 @@ README.html
 .bash_history
 *.docx
 *.xlsx
+*.pdf
+.DS_Store
